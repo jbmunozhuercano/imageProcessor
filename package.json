@@ -1,0 +1,17 @@
+{
+  "name": "sharp-project",
+  "version": "1.0.0",
+  "description": "Sharp test project",
+  "main": "index.js",
+  "author": "Jorge Muñoz ",
+  "license": "MIT",
+  "private": false,
+  "dependencies": {
+    "sharp": "^0.33.4",
+    "yargs": "^17.7.2"
+  },
+  "scripts": {
+    "clean": "rm -rf ./processed",
+    "start": "node resizeImages.js"
+  }
+}
