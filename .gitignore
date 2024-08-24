@@ -1,4 +1,4 @@
 node_modules
 .DS_Store
-processed/*.*
-images/*.*
+processed/*
+images/*
