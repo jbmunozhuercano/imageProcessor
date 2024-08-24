@@ -7,6 +7,8 @@ const ratio = 16 / 9;
 
 const directoryPath = path.join(__dirname, './images');
 
+const imgQuality = args.quality;
+
 fs.readdir(directoryPath, function (err, files) {
   if (err) {
     return console.log('Unable to scan directory: ' + err);
@@ -18,40 +20,41 @@ fs.readdir(directoryPath, function (err, files) {
 
   files.forEach((file) => {
     switch (args.option) {
-      case 'reducir calidad JPG':
-        reduceQualityJpg(file);
+      case 0:
+        reduceQualityJpg(file, imgQuality);
         break;
-      case 'reducir calidad PNG':
-        reduceQualityPNG(file);
+      case 1:
+        reduceQualityPNG(file, imgQuality);
         break;
-      case 'cambiar extesion a JPG':
-        changeExtentionJpg(file);
+      case 2:
+        changeExtentionJpg(file, imgQuality);
         break;
-      case 'convertir a webP':
-        convertToWebp(file);
+      case 3:
+        convertToWebp(file, imgQuality);
         break;
-      case 'reducir a tamaño para Fumisan':
-        reduceSizeFumisan(file);
+      case 4:
+        reduceSizeFumisan(file, imgQuality);
         break;
       default:
         break;
     }
   });
 });
-async function reduceQualityJpg(file) {
+
+async function reduceQualityJpg(file, imgQuality = 70) {
   const name = file.split('.')[0];
   const fileRoute = directoryPath + '/' + file;
 
   try {
     await sharp(fileRoute)
-      .toFormat('jpeg', { quality: 70 })
+      .toFormat('jpeg', { quality: imgQuality })
       .toFile(`processed/${name}.jpg`);
   } catch (error) {
     console.log(error);
   }
 }
 
-async function reduceSizeFumisan(file) {
+async function reduceSizeFumisan(file, imgQuality = 90) {
   const name = file.split('.')[0];
   const fileRoute = directoryPath + '/' + file;
 
@@ -62,7 +65,7 @@ async function reduceSizeFumisan(file) {
         height: 350,
         fit: sharp.fit.inside,
       })
-      .toFormat('jpeg', { quality: 99 })
+      .toFormat('jpeg', { quality: imgQuality })
       .toFile(`processed/${name}.jpg`);
   } catch (error) {
     console.log(error);
@@ -75,46 +78,46 @@ async function reduceSizeFumisan(file) {
         height: 98,
         fit: sharp.fit.inside,
       })
-      .toFormat('jpeg', { quality: 99 })
+      .toFormat('jpeg', { quality: imgQuality })
       .toFile(`processed/${name}_tumb.jpg`);
   } catch (error) {
     console.log(error);
   }
 }
 
-async function convertToWebp(file) {
+async function convertToWebp(file, imgQuality = 80) {
   const name = file.split('.')[0];
   const fileRoute = directoryPath + '/' + file;
-
+  console.log(file);
   try {
     await sharp(fileRoute)
-      .webp({ quality: 85, smartSubsample: true })
+      .webp({ quality: imgQuality, smartSubsample: true })
       .toFile(`processed/${name}.webp`);
   } catch (error) {
     console.log(error);
   }
 }
 
-async function reduceQualityPNG(file) {
+async function reduceQualityPNG(file, imgQuality = 80) {
   const name = file.split('.')[0];
   const fileRoute = directoryPath + '/' + file;
 
   try {
     await sharp(fileRoute)
-      .toFormat('png', { quality: 40 })
+      .toFormat('png', { quality: imgQuality })
       .toFile(`processed/${name}.png`);
   } catch (error) {
     console.log(error);
   }
 }
 
-async function changeExtentionJpg(file) {
+async function changeExtentionJpg(file, imgQuality = 80) {
   const name = file.split('.')[0];
   const fileRoute = directoryPath + '/' + file;
 
   try {
     await sharp(fileRoute)
-      .toFormat('jpeg', { quality: 90 })
+      .toFormat('jpeg', { quality: imgQuality })
       .toFile(`processed/${name}.jpg`);
   } catch (error) {
     console.log(error);
