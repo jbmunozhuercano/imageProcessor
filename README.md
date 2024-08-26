@@ -1,4 +1,4 @@
-## Convierte archivos de imagen a diferentes formatos y calidad.
+## Convierte archivos de imagen a diferentes formatos y calidad usando la librería Sharp.
 
 ## Instrucciones.
 
