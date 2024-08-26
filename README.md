@@ -1,4 +1,4 @@
-## Convierte archivos de imagen a diferentes formatos y calidad usando la librería Sharp.
+## Convierte archivos de imagen a diferentes formatos y calidad, usando la librería Sharp.
 
 ## Instrucciones.
 
@@ -9,9 +9,9 @@
 
 `node imageProcessor.js --option 3 --quality 80`
 
-Donde **--option** es la operación que queremos realizar, siendo las siguientes:
+Donde **--option** es el índice de la operación que queremos realizar, siendo las siguientes:
 
-- Reducir calidad JPG'
+- Reducir calidad JPG
 - Reducir calidad PNG
 - Cambiar extensión a JPG
 - Convertir a webP
